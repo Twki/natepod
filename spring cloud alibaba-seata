@@ -1,0 +1,25 @@
+1、分布式事务理论模型：X/Open，二阶段/三阶段协议，CAP理论，BASE理论
+
+2、分布式解决方案：
+  a.TCC补偿方案
+  b.基于可靠性消息的最终一致性方案
+  c.最大努力通知型
+  
+  
+3、TCC补偿方案
+   TC：事务协调器：Seata；
+   TM：事务管理器：@GobalTransactional方法
+   RM：资源管理器：数据库
+   
+   描述：
+   A、前端接口调用Controller控制器，Controller控制器调用@GobalTransactional方法；
+   B、@GobalTransactional方法调用openFeign定义的远程接口Controller方法；
+   C、远程接口Controller方法调用自身的Service方法；
+   D、自身的Service方法调用自身的Service实现类；
+   E、自身的Service实现类调用自身的TCC接口的try()抽象方法；
+   F、自身的TCC接口中有@TCCLocal注解，还有try()+commit()+rollback()抽象方法；
+   G、try抽象方法中有注解@TwoPhaseBusinessAction(name = "DubboTccActionTwo", commitMethod = "commit", rollbackMethod = "rollback")；
+   H、TCC的实现类中那个有try()+commit()+rollback()实现方法；
+   I、try()方法是进行资源冻结操作；
+   J、commit()方法是进行资源解冻操作；
+   K、rollback()方法是进行资源回滚操作；
