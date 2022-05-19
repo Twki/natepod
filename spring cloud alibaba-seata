@@ -13,8 +13,8 @@
    TM：事务管理器：@GobalTransactional方法
    RM：资源管理器：数据库
 
-3、TCC补偿方案
-   
+4、TCC补偿方案
+
    描述：
    A、前端接口调用Controller控制器，Controller控制器调用@GobalTransactional方法；
    B、@GobalTransactional方法调用openFeign定义的远程接口Controller方法；
