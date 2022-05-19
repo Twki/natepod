@@ -1,15 +1,19 @@
-1、分布式事务理论模型：X/Open，二阶段/三阶段协议，CAP理论，BASE理论
+1、分布式事务理论模型：
+  a.X/Open
+  b.二阶段/三阶段协议
+  c.CAP理论，BASE理论
 
 2、分布式解决方案：
   a.TCC补偿方案
   b.基于可靠性消息的最终一致性方案
   c.最大努力通知型
   
-  
-3、TCC补偿方案
+3、分布式角色：
    TC：事务协调器：Seata；
    TM：事务管理器：@GobalTransactional方法
    RM：资源管理器：数据库
+
+3、TCC补偿方案
    
    描述：
    A、前端接口调用Controller控制器，Controller控制器调用@GobalTransactional方法；
